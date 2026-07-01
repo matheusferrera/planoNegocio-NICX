@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SaaS de Rodadas de Negócios — Plano do Produto</title>
+<meta name="description" content="Plataforma para organizar rodadas de negócios com matchmaking, agenda automática e relatório pós-rodada.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rodadas de Negócios · SEBRAE">
+<meta property="og:description" content="Matchmaking, agenda e relatório pós-rodada em uma plataforma.">
+<meta property="og:image" content="assets/social-banner-whatsapp.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rodadas de Negócios · SEBRAE">
+<meta name="twitter:description" content="Matchmaking, agenda e relatório pós-rodada em uma plataforma.">
+<meta name="twitter:image" content="assets/social-banner-whatsapp.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F5F6FA; --surface:#FFFFFF; --ink:#131A2A; --ink-soft:#4A5366;
+    --line:#E2E6EF; --line-strong:#CDD3E0;
+    --indigo:#3A45D4; --indigo-soft:#EDEEFD;
+    --coral:#FF6A4D; --coral-soft:#FFEDE8;
+    --green:#18A06B; --green-soft:#E2F5ED;
+    --amber:#E8932B;
+    --display:'Space Grotesk',system-ui,sans-serif;
+    --body:'IBM Plex Sans',system-ui,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--body);background:var(--bg);color:var(--ink);
+    line-height:1.6;-webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--indigo);color:#fff}
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:sticky;top:0;z-index:50;background:rgba(245,246,250,.82);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+  }
+  .nav-in{max-width:var(--maxw);margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:24px}
+  .brand{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-.01em;display:flex;align-items:center;gap:9px}
+  .brand .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--indigo),var(--coral))}
+  .nav-links{display:flex;gap:22px;margin-left:auto;font-size:13.5px;font-weight:500;color:var(--ink-soft)}
+  .nav-links a{transition:color .15s}
+  .nav-links a:hover{color:var(--ink)}
+  @media(max-width:820px){.nav-links{display:none}}
+
+  /* ---------- LAYOUT ---------- */
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .block{padding:88px 0}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--indigo);font-weight:500;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--indigo)}
+  h2{font-family:var(--display);font-weight:600;font-size:clamp(26px,3.6vw,38px);letter-spacing:-.02em;line-height:1.12;margin-bottom:18px}
+  h3{font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:-.01em}
+  .lead{font-size:18px;color:var(--ink-soft);max-width:60ch}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:64px 0 72px;border-bottom:1px solid var(--line)}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+  @media(max-width:880px){.hero-grid{grid-template-columns:1fr;gap:36px}}
+  .tag{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);border:1px solid var(--line-strong);border-radius:100px;padding:6px 14px;margin-bottom:24px}
+  .hero h1{font-family:var(--display);font-weight:700;font-size:clamp(34px,5.4vw,58px);line-height:1.04;letter-spacing:-.035em}
+  .hero h1 .hl{background:linear-gradient(120deg,var(--indigo),var(--coral));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.sub{margin-top:22px;font-size:18.5px;color:var(--ink-soft);max-width:48ch}
+  .hero-cta{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap}
+  .pill{font-family:var(--mono);font-size:12.5px;padding:9px 15px;border-radius:8px;background:var(--surface);border:1px solid var(--line);color:var(--ink-soft)}
+  .pill b{color:var(--ink);font-weight:500}
+
+  /* ---------- HERO GRAPH ---------- */
+  .graph-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 1px 0 rgba(19,26,42,.02),0 18px 40px -28px rgba(19,26,42,.25)}
+  .graph-card .ghead{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-soft);margin-bottom:6px}
+  .graph-card svg{width:100%;height:auto;display:block}
+  .gnode-c{fill:var(--indigo-soft);stroke:var(--indigo)}
+  .gnode-f{fill:var(--coral-soft);stroke:var(--coral)}
+  .gnode-label{font-family:var(--mono);font-size:13px;font-weight:500}
+  .gnode-label.c{fill:var(--indigo)}
+  .gnode-label.f{fill:var(--coral)}
+  .gedge{stroke:var(--line-strong);stroke-width:1.5;fill:none}
+  .gedge.match{stroke:var(--green);stroke-width:2.5}
+  .draw{stroke-dasharray:340;stroke-dashoffset:340;animation:draw 1.3s ease forwards}
+  .draw.d2{animation-delay:.18s}.draw.d3{animation-delay:.36s}.draw.d4{animation-delay:.54s}
+  .draw.d5{animation-delay:.72s}.draw.d6{animation-delay:.9s}.draw.d7{animation-delay:1.05s}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .glegend{display:flex;gap:18px;margin-top:14px;font-size:12.5px;color:var(--ink-soft);flex-wrap:wrap}
+  .glegend span{display:flex;align-items:center;gap:7px}
+  .glegend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+
+  /* ---------- INTRO STRIP ---------- */
+  .strip{background:var(--ink);color:#EAEDF4}
+  .strip .wrap{padding-top:40px;padding-bottom:40px}
+  .strip-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:820px){.strip-row{grid-template-columns:repeat(2,1fr)}}
+  .stat .n{font-family:var(--display);font-weight:600;font-size:30px;letter-spacing:-.02em;color:#fff}
+  .stat .l{font-size:13.5px;color:#9AA6BE;margin-top:2px}
+
+  /* ---------- PERSONAS ---------- */
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+  @media(max-width:880px){.cards{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.cards{grid-template-columns:1fr}}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;transition:transform .2s,box-shadow .2s}
+  .card:hover{transform:translateY(-3px);box-shadow:0 20px 40px -30px rgba(19,26,42,.4)}
+  .card .role{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--indigo);margin-bottom:10px}
+  .card h3{margin-bottom:8px;font-size:17px}
+  .card p{font-size:14.5px;color:var(--ink-soft)}
+
+  /* ---------- STEPS / FLUXO ---------- */
+  .steps{margin-top:40px;border-top:1px solid var(--line)}
+  .step{display:grid;grid-template-columns:88px 1fr;gap:24px;padding:34px 0;border-bottom:1px solid var(--line);align-items:start}
+  @media(max-width:680px){.step{grid-template-columns:1fr;gap:14px}}
+  .step-num{font-family:var(--display);font-weight:700;font-size:40px;line-height:1;color:var(--indigo);position:relative}
+  .step:nth-child(even) .step-num{color:var(--coral)}
+  .step-body h3{margin-bottom:10px;font-size:21px}
+  .step-body .obj{font-size:16px;color:var(--ink-soft);margin-bottom:16px;max-width:62ch}
+  .feat{display:flex;flex-wrap:wrap;gap:8px}
+  .feat span{font-size:13px;background:var(--indigo-soft);color:var(--indigo);padding:5px 11px;border-radius:7px;font-weight:500}
+  .step:nth-child(even) .feat span{background:var(--coral-soft);color:#D8462A}
+  .note{margin-top:14px;font-size:14px;color:var(--ink-soft);border-left:2px solid var(--line-strong);padding-left:14px}
+  .note b{color:var(--ink);font-weight:600}
+
+  /* ---------- AGENDA / TÉCNICO ---------- */
+  .tech{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .tech-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  @media(max-width:880px){.tech-grid{grid-template-columns:1fr;gap:36px}}
+  .tech ul{list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:14px}
+  .tech li{display:flex;gap:12px;font-size:15.5px;color:var(--ink-soft)}
+  .tech li b{color:var(--ink);font-weight:600}
+  .tech li::before{content:"";flex:none;width:7px;height:7px;border-radius:2px;background:var(--green);margin-top:9px}
+  .agenda-vis{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:22px}
+  .agenda-vis .cap{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:14px}
+  .grid-tbl{display:grid;grid-template-columns:auto repeat(4,1fr);gap:6px;font-size:12px}
+  .grid-tbl .gh{font-family:var(--mono);color:var(--ink-soft);font-size:11px;padding:4px;text-align:center}
+  .grid-tbl .gr{font-family:var(--mono);color:var(--ink-soft);font-size:11px;display:flex;align-items:center}
+  .cell{height:34px;border-radius:6px;background:#ECEFF6;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;color:var(--ink-soft)}
+  .cell.m{background:var(--indigo);color:#fff}
+  .cell.m2{background:var(--coral);color:#fff}
+  .cell.m3{background:var(--green);color:#fff}
+  .agenda-vis .hint{margin-top:14px;font-size:12.5px;color:var(--ink-soft)}
+
+  /* ---------- ARQUITETURA ---------- */
+  .arch{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+  @media(max-width:780px){.arch{grid-template-columns:1fr}}
+  .arch-col{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .arch-col .h{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:14px}
+  .chip{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:13px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px 12px;margin:0 6px 8px 0}
+  .chip i{width:7px;height:7px;border-radius:50%;background:var(--indigo)}
+  .arch-col:nth-child(2) .chip i{background:var(--coral)}
+  .arch-col:nth-child(3) .chip i{background:var(--green)}
+
+  /* ---------- ROADMAP ---------- */
+  .road{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:36px}
+  @media(max-width:620px){.road{grid-template-columns:1fr}}
+  .phase{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;overflow:hidden}
+  .phase::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--indigo)}
+  .phase:nth-child(2)::before{background:var(--coral)}
+  .phase:nth-child(3)::before{background:var(--green)}
+  .phase:nth-child(4)::before{background:var(--amber)}
+  .phase .ph{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+  .phase h3{font-size:18px;margin-bottom:14px}
+  .phase ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .phase li{font-size:14px;color:var(--ink-soft);padding-left:18px;position:relative}
+  .phase li::before{content:"›";position:absolute;left:0;color:var(--ink-soft);font-weight:700}
+
+  /* ---------- VALIDAR ---------- */
+  .validate{background:var(--ink);color:#EAEDF4}
+  .validate h2{color:#fff}
+  .validate .lead{color:#A7B2C9}
+  .vlist{margin-top:36px;columns:2;column-gap:40px}
+  @media(max-width:680px){.vlist{columns:1}}
+  .vlist .v{break-inside:avoid;display:flex;gap:14px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.09)}
+  .vlist .vn{font-family:var(--mono);font-size:13px;color:var(--coral);flex:none;padding-top:1px}
+  .vlist .vt{font-size:14.5px;color:#D3DAE8}
+  .vlist .vt b{color:#fff;font-weight:600}
+
+  /* ---------- MATCHMAKING ---------- */
+  .mm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:38px}
+  @media(max-width:880px){.mm-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.mm-grid{grid-template-columns:1fr}}
+  .mm-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:20px}
+  .mm-card .k{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--coral);margin-bottom:10px}
+  .mm-card h3{color:#fff;font-size:17px;margin-bottom:8px}
+  .mm-card p{font-size:13.5px;color:#AEB8CC}
+  .mm-bar{height:6px;border-radius:100px;background:rgba(255,255,255,.12);margin:16px 0 8px;overflow:hidden}
+  .mm-bar i{display:block;height:100%;border-radius:100px;background:linear-gradient(90deg,var(--indigo),var(--coral))}
+  .mm-w{font-family:var(--mono);font-size:11.5px;color:#8E9AB2}
+  .mm-formula{margin-top:30px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:20px 22px;font-family:var(--mono);font-size:14.5px;color:#E6EAF2;line-height:1.9;overflow-x:auto}
+  .mm-formula b{color:#fff}
+  .mm-formula .op{color:var(--coral)}
+  .mm-notes{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+  @media(max-width:680px){.mm-notes{grid-template-columns:1fr}}
+  .mm-note{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-left:3px solid var(--green);border-radius:10px;padding:16px 18px}
+  .mm-note.gate{border-left-color:var(--amber)}
+  .mm-note .t{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#8E9AB2;margin-bottom:6px}
+  .mm-note p{font-size:14px;color:#D3DAE8}
+  .mm-note p b{color:#fff}
+
+  /* ---------- FOOT ---------- */
+  footer{padding:40px 0;border-top:1px solid var(--line);font-size:13px;color:var(--ink-soft)}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  :focus-visible{outline:2px solid var(--indigo);outline-offset:3px;border-radius:4px}
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <div class="brand"><span class="dot"></span>Rodadas&nbsp;·&nbsp;SEBRAE</div>
+    <div class="nav-links">
+      <a href="#fluxo">Fluxo</a>
+      <a href="#etapas">Etapas</a>
+      <a href="#agenda">Agenda</a>
+      <a href="#entregas">Entregas</a>
+      <a href="#matchmaking">Matchmaking</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="tag">Plano de produto · v1</span>
+      <h1>Onde <span class="hl">compradores e fornecedores</span> se encontram no momento certo.</h1>
+      <p class="sub">Uma plataforma para o SEBRAE organizar rodadas de negócios de ponta a ponta — do cadastro à exportação dos resultados — com matchmaking inteligente e agenda gerada automaticamente.</p>
+      <div class="hero-cta">
+        <span class="pill"><b>4</b> etapas</span>
+        <span class="pill"><b>2</b> motores: matchmaking + agenda</span>
+        <span class="pill"><b>4</b> entregas no MVP</span>
+      </div>
+    </div>
+    <div class="graph-card reveal">
+      <div class="ghead"><span>Compradores</span><span>Fornecedores</span></div>
+      <svg viewBox="0 0 520 360" role="img" aria-label="Grafo conectando compradores a fornecedores">
+        <!-- edges -->
+        <path class="gedge draw"    d="M112,70  C260,70 260,50 408,50"/>
+        <path class="gedge match draw d2" d="M112,70  C260,70 260,120 408,120"/>
+        <path class="gedge draw d3" d="M112,150 C260,150 260,120 408,120"/>
+        <path class="gedge match draw d4" d="M112,150 C260,150 260,190 408,190"/>
+        <path class="gedge draw d5" d="M112,230 C260,230 260,260 408,260"/>
+        <path class="gedge match draw d6" d="M112,310 C260,310 260,260 408,260"/>
+        <path class="gedge draw d7" d="M112,310 C260,310 260,330 408,330"/>
+        <!-- comprador nodes -->
+        <g class="gnode-c" stroke-width="2">
+          <circle cx="90" cy="70" r="22"/><circle cx="90" cy="150" r="22"/>
+          <circle cx="90" cy="230" r="22"/><circle cx="90" cy="310" r="22"/>
+        </g>
+        <g class="gnode-label c" text-anchor="middle" dominant-baseline="central">
+          <text x="90" y="70">C1</text><text x="90" y="150">C2</text>
+          <text x="90" y="230">C3</text><text x="90" y="310">C4</text>
+        </g>
+        <!-- fornecedor nodes -->
+        <g class="gnode-f" stroke-width="2">
+          <circle cx="430" cy="50" r="22"/><circle cx="430" cy="120" r="22"/>
+          <circle cx="430" cy="190" r="22"/><circle cx="430" cy="260" r="22"/>
+          <circle cx="430" cy="330" r="22"/>
+        </g>
+        <g class="gnode-label f" text-anchor="middle" dominant-baseline="central">
+          <text x="430" y="50">F1</text><text x="430" y="120">F2</text>
+          <text x="430" y="190">F3</text><text x="430" y="260">F4</text>
+          <text x="430" y="330">F5</text>
+        </g>
+      </svg>
+      <div class="glegend">
+        <span><i style="background:var(--indigo)"></i>Demanda</span>
+        <span><i style="background:var(--coral)"></i>Oferta</span>
+        <span><i style="background:var(--green)"></i>Match aprovado</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- STRIP -->
+<section class="strip">
+  <div class="wrap">
+    <div class="strip-row">
+      <div class="stat"><div class="n">10–45'</div><div class="l">por reunião, pré-agendada</div></div>
+      <div class="stat"><div class="n">~12</div><div class="l">reuniões por comprador/dia</div></div>
+      <div class="stat"><div class="n">1 clique</div><div class="l">gera a agenda sem conflitos</div></div>
+      <div class="stat"><div class="n">100%</div><div class="l">reuniões viram dados de negócio</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- O QUE É -->
+<section class="block" id="sobre">
+  <div class="wrap">
+    <div class="eyebrow">O que é</div>
+    <h2>Rodada de negócios, agora como software.</h2>
+    <p class="lead">Numa rodada, empresas compradoras (âncoras) se reúnem rapidamente com fornecedores para gerar negócios. Hoje o SEBRAE faz toda a "inteligência" de cruzar demanda e oferta e montar as agendas no braço. Este SaaS automatiza esse trabalho — e mantém o SEBRAE no controle das decisões.</p>
+    <div class="cards">
+      <div class="card reveal"><div class="role">Admin SEBRAE</div><h3>Decide e cura</h3><p>Cria o edital, aprova participantes e matches, dispara a agenda e acompanha as métricas.</p></div>
+      <div class="card reveal"><div class="role">Organizador</div><h3>Opera o evento</h3><p>Ajusta a agenda, controla salas e mesas e registra presença no dia da rodada.</p></div>
+      <div class="card reveal"><div class="role">Comprador</div><h3>Traz a demanda</h3><p>Cadastra o que quer comprar, recebe sua agenda e avalia cada reunião no fim.</p></div>
+      <div class="card reveal"><div class="role">Fornecedor</div><h3>Traz a oferta</h3><p>Cadastra o que vende, recebe sua agenda individual e responde o formulário pós-rodada.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FLUXO / ETAPAS -->
+<section class="block" id="fluxo" style="padding-top:0">
+  <div class="wrap">
+    <div class="eyebrow">Fluxo do produto</div>
+    <h2 id="etapas">As quatro etapas, de ponta a ponta.</h2>
+    <p class="lead">Cada etapa é uma fase real do processo — por isso a numeração importa: ela é a ordem em que o evento acontece.</p>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h3>Cadastro — pré-edital</h3>
+          <p class="obj">Compradores e fornecedores se inscrevem e declaram demanda e oferta antes da publicação do edital. É aqui que nascem os dados que alimentam todo o resto.</p>
+          <div class="feat"><span>CNPJ &amp; porte</span><span>Categorias</span><span>Volume &amp; entrega</span><span>Capacidade</span><span>Certificações</span><span>Catálogo</span></div>
+          <p class="note"><b>Habilitação:</b> o SEBRAE confere se o fornecedor tem condições reais de atender (capacidade técnica, produção e situação fiscal/legal) antes de aprovar.</p>
+        </div>
+      </div>
+
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h3>Matchmaking &amp; curadoria</h3>
+          <p class="obj">O sistema cruza demanda × oferta e devolve uma lista de matches ranqueada por compatibilidade. O SEBRAE revisa, aprova, recusa e adiciona matches manuais — a decisão final é sempre humana.</p>
+          <div class="feat"><span>Score por categoria</span><span>Compatibilidade de local</span><span>Faixa de volume</span><span>Match semântico (V2)</span><span>Painel de aprovação</span></div>
+          <p class="note"><b>Por que ranquear:</b> priorizar as maiores compatibilidades garante que cada empresa saia da rodada com reuniões efetivas.</p>
+        </div>
+      </div>
+
+      <div class="step reveal">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h3>Geração de agenda</h3>
+          <p class="obj">A partir dos matches aprovados, o sistema monta o cronograma: quem encontra quem, em qual horário e mesa — sem ninguém em dois lugares ao mesmo tempo. Cada participante recebe a sua agenda individual.</p>
+          <div class="feat"><span>Slots &amp; mesas</span><span>Sem conflito</span><span>Edição manual</span><span>Prioridades</span><span>Agenda por e-mail/WhatsApp</span><span>PDF</span></div>
+          <p class="note"><b>É a parte mais difícil:</b> um problema de otimização. Veja a modelagem abaixo.</p>
+        </div>
+      </div>
+
+      <div class="step reveal">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h3>Relatório pós-rodada</h3>
+          <p class="obj">Depois das reuniões, cada participante responde um formulário — idealmente por reunião. O sistema consolida tudo no KPI que o SEBRAE mais valoriza: negócios gerados e expectativa de vendas.</p>
+          <div class="feat"><span>Resultado da reunião</span><span>Valor estimado</span><span>Satisfação / NPS</span><span>Comparecimento</span><span>Dashboards por setor</span></div>
+          <p class="note"><b>Lembretes automáticos</b> para quem ainda não respondeu, elevando a taxa de retorno dos formulários.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section class="block tech" id="agenda">
+  <div class="wrap tech-grid">
+    <div class="reveal">
+      <div class="eyebrow">A agenda</div>
+      <h2>A agenda se monta sozinha — e cada empresa recebe a sua.</h2>
+      <p class="lead">O que hoje leva horas de encaixe no braço vira um clique. A partir dos matches aprovados, o sistema monta o cronograma inteiro do evento e entrega a cada comprador e fornecedor exatamente onde e quando estar.</p>
+      <ul>
+        <li><b>Pronta num clique:</b> o cronograma completo sai em segundos, a partir dos matches aprovados.</li>
+        <li><b>Cada um com a sua:</b> toda empresa recebe só os seus horários — por e-mail, WhatsApp ou PDF.</li>
+        <li><b>Sem choque de horário:</b> ninguém fica com duas reuniões ao mesmo tempo, sem conferência manual.</li>
+        <li><b>Prioriza o que rende:</b> quando o tempo aperta, os encontros de maior compatibilidade entram primeiro.</li>
+        <li><b>Mudou de última hora?</b> Arraste a reunião e a agenda se atualiza e reenvia sozinha.</li>
+      </ul>
+    </div>
+    <div class="agenda-vis reveal">
+      <div class="cap">Visão do organizador · o dia inteiro</div>
+      <div class="grid-tbl">
+        <div class="gh"></div><div class="gh">09:00</div><div class="gh">09:20</div><div class="gh">09:40</div><div class="gh">10:00</div>
+        <div class="gr">Mesa C1</div><div class="cell m">F2</div><div class="cell m">F1</div><div class="cell">—</div><div class="cell m">F5</div>
+        <div class="gr">Mesa C2</div><div class="cell m2">F4</div><div class="cell m2">F3</div><div class="cell m2">F2</div><div class="cell">—</div>
+        <div class="gr">Mesa C3</div><div class="cell">—</div><div class="cell m3">F5</div><div class="cell m3">F4</div><div class="cell m3">F1</div>
+        <div class="gr">Mesa C4</div><div class="cell m">F1</div><div class="cell">—</div><div class="cell m">F3</div><div class="cell m">F2</div>
+      </div>
+      <p class="hint">Cada linha é uma empresa compradora na sua mesa ao longo do dia. Na prática, cada participante recebe só a sua agenda — e nunca dois compromissos no mesmo horário.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ENTREGAS -->
+<section class="block" id="entregas">
+  <div class="wrap">
+    <div class="eyebrow">Entregas</div>
+    <h2>Quatro entregas, na ordem em que geram valor.</h2>
+    <p class="lead">O escopo atual é construído em quatro blocos sequenciais — cada um transforma a etapa anterior em operação, agenda ou resultado mensurável.</p>
+    <div class="road">
+      <div class="phase reveal">
+        <div class="ph">Entrega 1</div>
+        <h3>Cadastros de compradores e parceiros</h3>
+        <ul>
+          <li>Cadastro de empresa (CNPJ, porte, setor)</li>
+          <li>Perfil do comprador — demandas</li>
+          <li>Perfil do parceiro — ofertas &amp; capacidade</li>
+          <li>Taxonomia de categorias</li>
+          <li>Habilitação por checklist</li>
+          <li>Upload de catálogo e documentos</li>
+        </ul>
+      </div>
+      <div class="phase reveal">
+        <div class="ph">Entrega 2</div>
+        <h3>Matchmaking</h3>
+        <ul>
+          <li>Cruzamento demanda × oferta</li>
+          <li>Score de compatibilidade</li>
+          <li>Painel de curadoria do SEBRAE</li>
+          <li>Aprovar, recusar e criar match manual</li>
+          <li>Marcação de matches prioritários</li>
+        </ul>
+      </div>
+      <div class="phase reveal">
+        <div class="ph">Entrega 3</div>
+        <h3>Criação da agenda</h3>
+        <ul>
+          <li>Configuração de slots e mesas</li>
+          <li>Geração automática sem conflito</li>
+          <li>Edição manual com revalidação</li>
+          <li>Agenda individual por participante</li>
+          <li>Entrega por e-mail/PDF (WhatsApp opcional)</li>
+        </ul>
+      </div>
+      <div class="phase reveal">
+        <div class="ph">Entrega 4</div>
+        <h3>Relatório pós-rodada</h3>
+        <ul>
+          <li>Formulário de avaliação por reunião</li>
+          <li>Registro de presença e no-show</li>
+          <li>Resultado da reunião e próximos passos</li>
+          <li>Valor estimado e expectativa de vendas</li>
+          <li>Dashboard por setor, comprador e fornecedor</li>
+          <li>Exportação em PDF/planilha para prestação de contas</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MATCHMAKING -->
+<section class="block validate" id="matchmaking">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--coral)">Recomendação · método SEBRAE</div>
+    <h2>Como fazer o matchmaking.</h2>
+    <p class="lead">O SEBRAE parte da demanda da empresa âncora, cruza oferta × demanda e prioriza as maiores compatibilidades — para que cada reunião seja efetiva. Eles já chamam a própria plataforma de "Tinder dos negócios". A recomendação abaixo transforma esses mesmos critérios em um score.</p>
+
+    <div class="mm-grid">
+      <div class="mm-card reveal">
+        <div class="k">Critério 1</div>
+        <h3>Categoria do produto</h3>
+        <p>O eixo central do cruzamento do SEBRAE. A demanda declarada pelo comprador precisa bater com a oferta do fornecedor.</p>
+        <div class="mm-bar"><i style="width:100%"></i></div>
+        <div class="mm-w">peso sugerido · 35% · overlap na taxonomia</div>
+      </div>
+      <div class="mm-card reveal">
+        <div class="k">Critério 2</div>
+        <h3>Volume × capacidade</h3>
+        <p>O SEBRAE cruza o volume de compra com a capacidade de produção do fornecedor — quem não dá conta não gera negócio.</p>
+        <div class="mm-bar"><i style="width:62%"></i></div>
+        <div class="mm-w">peso sugerido · 25% · faixa compatível</div>
+      </div>
+      <div class="mm-card reveal">
+        <div class="k">Critério 3</div>
+        <h3>Local de entrega</h3>
+        <p>Região e logística entram no cruzamento: entrega viável entre o que o comprador precisa e onde o fornecedor atende.</p>
+        <div class="mm-bar"><i style="width:50%"></i></div>
+        <div class="mm-w">peso sugerido · 15% · proximidade/cobertura</div>
+      </div>
+      <div class="mm-card reveal">
+        <div class="k">Critério 4</div>
+        <h3>CNAE — segmento econômico</h3>
+        <p>Alinhamento da atividade econômica entre comprador e fornecedor. Empresas com CNAEs correlatos têm maior propensão a negócios viáveis e duradouros.</p>
+        <div class="mm-bar"><i style="width:75%"></i></div>
+        <div class="mm-w">peso sugerido · 15% · compatibilidade de segmento</div>
+      </div>
+      <div class="mm-card reveal">
+        <div class="k">Critério 5</div>
+        <h3>Sinergia</h3>
+        <p>Afinidades além da categoria exata — mesma cadeia, mesmas matérias-primas, complementaridade. Aqui entra o match semântico depois.</p>
+        <div class="mm-bar"><i style="width:38%"></i></div>
+        <div class="mm-w">peso sugerido · 10% · características em comum</div>
+      </div>
+    </div>
+
+    <div class="mm-formula reveal">
+      <b>score</b> = 0,35&nbsp;<span class="op">·</span>&nbsp;categoria + 0,25&nbsp;<span class="op">·</span>&nbsp;volume + 0,15&nbsp;<span class="op">·</span>&nbsp;região + 0,15&nbsp;<span class="op">·</span>&nbsp;cnae + 0,10&nbsp;<span class="op">·</span>&nbsp;sinergia<br>
+      <span style="color:#8E9AB2">condicionado a</span> habilitação = aprovada
+    </div>
+    <p class="mm-w reveal" style="margin-top:12px;line-height:1.6">Os pesos são um ponto de partida para calibrar. Em rodada setorial, a categoria já é quase dada — então volume e sinergia pesam mais; em multissetorial, a categoria pesa mais para separar o que realmente faz sentido.</p>
+
+    <div class="mm-notes">
+      <div class="mm-note gate reveal">
+        <div class="t">Porta de entrada · eliminatório</div>
+        <p><b>Habilitação primeiro.</b> Capacidade técnica, produtiva e situação fiscal/legal são pré-requisito. Sem isso aprovado, o fornecedor nem entra no cruzamento — não importa o score.</p>
+      </div>
+      <div class="mm-note reveal">
+        <div class="t">Palavra final · humano no topo</div>
+        <p><b>Curadoria do SEBRAE.</b> O score só ordena as sugestões. Quem decide quem participa e quais encontros valem continua sendo o SEBRAE, como na etapa de matchmaking.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span>Rodadas&nbsp;·&nbsp;SEBRAE</div>
+    <div>Plano de produto — documento de trabalho · derivado das anotações de reunião</div>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.14});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
